@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="com.hibernate.model">
+    <class name="Materia" table="materia" schema="public">
+        <id name="c" column="id_materia">
+            
+        </id>
+        <property name="descripcion" column="descripcion" />
+ 
+
+    </class> 
+</hibernate-mapping>
