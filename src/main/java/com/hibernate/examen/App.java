@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.hibernate.model.Estudiante;
 import com.hibernate.model.Materia;
@@ -48,7 +49,16 @@ public class App {
     private static void mostrarRegistro() {
     	Transaction tx = null;
     	Session sesion = HibernateUtil.getSessionFactory().openSession();
+    	tx = sesion.beginTransaction();
+    	String hql = "SELECT new com.hibernate.model.EstudianteSim(Es.c, Es.nombre, Es.apellidoPaterno) From Estudiante as ES";
+    	Query consulta = sesion.createQuery(hql);
     	
+    	List Estudiantes = consulta.getResultList();
+    	
+    	for (Iterator iterator = Estudiantes.iterator();iterator.hasNext();) {
+    		com.hibernate.model.EstudianteSim e = (com.hibernate.model.EstudianteSim) iterator.next();
+    		System.out.println(String.format("Codigo: %s, Nombre: ,%s Apellido: %s", e.getC(),e.getNombre(), e.getApellidoPaterno()));
+    	}
     	
     }
     
