@@ -19,7 +19,7 @@ public class App {
         estud.setC("b");
         estud.setApellidoPaterno("Callisaya");
         estud.setApellidoMaterno("Gutierrez");
-        estud.setNombre("German");
+        estud.setNombre("Miguel");
         Transaction tx =null;
         
         System.out.println("Estudiante ingresado con exito.");
@@ -50,7 +50,7 @@ public class App {
     	Transaction tx = null;
     	Session sesion = HibernateUtil.getSessionFactory().openSession();
     	tx = sesion.beginTransaction();
-    	String hql = "SELECT new com.hibernate.model.EstudianteSim(Es.c, Es.nombre, Es.apellidoPaterno) From Estudiante as ES";
+    	String hql = "From Estudiante as ES where ES.nombre='German'";
     	Query consulta = sesion.createQuery(hql);
     	
     	List Estudiantes = consulta.getResultList();
@@ -62,6 +62,21 @@ public class App {
     	
     }
     
+    private static void mostrar() {
+    	Transaction tx = null;
+    	Session sesion = HibernateUtil.getSessionFactory().openSession();
+    	tx = sesion.beginTransaction();
+    	String hql = "From EstudianteMateria as ESM where calificaciones between 80 and 90 ";
+    	Query consulta = sesion.createQuery(hql);
+    	
+    	List EstudiantesMaterias = consulta.getResultList();
+    	
+    	for (Iterator iterator = EstudiantesMaterias.iterator();iterator.hasNext();) {
+    		com.hibernate.model.EstudianteMateria e = (com.hibernate.model.EstudianteMateria) iterator.next();
+    		System.out.println(String.format("Materia: %s, Nombre: ,%s Calificacion: %s", e.getId_materia(),e.getId_estudiante(), e.getCalificacion()));
+    	}
+    	
+    }
     
     
 }
