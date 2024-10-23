@@ -6,7 +6,7 @@
         
 <hibernate-mapping package="com.hibernate.model">
     <class name="Materia" table="materia" schema="public">
-        <id name="c" column="id_materia">
+        <id name="id_materia" column="id_materia">
             
         </id>
         <property name="descripcion" column="descripcion" />

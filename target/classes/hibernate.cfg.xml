@@ -16,8 +16,7 @@
 		
 		<!-- Entities -->
         <mapping class="com.hibernate.model.Estudiante"/>
-        <mapping resource="Materia.hbm.xml"/>
-        <mapping resource="MateriaEstudiante.hbm.xml"/>
+
 	</session-factory>
 </hibernate-configuration>
     

@@ -1,5 +1,8 @@
 package com.hibernate.examen;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -18,22 +21,37 @@ public class App {
         estud.setNombre("German");
         Transaction tx =null;
         
+        System.out.println("Estudiante ingresado con exito.");
+        
         Session sesion = HibernateUtil.getSessionFactory().openSession();
         tx = sesion.beginTransaction();
         sesion.save(estud);
         tx.commit();
         System.out.println("Exito");
-        
-        Materia materia = new Materia();
-        materia.setId_materia(0);;
-        materia.setDescripcion("Hibernate");
-                
-        sesion = HibernateUtil.getSessionFactory().openSession();
         tx = sesion.beginTransaction();
-        sesion.save(materia);
-        tx.commit();
-        System.out.println("Exito");
+        List estudiantes = sesion.createQuery("FROM Estudiante").list();
+        for(Iterator iterator = estudiantes.iterator();iterator.hasNext(); ) {
+        	Estudiante e = (Estudiante) iterator.next();
+        	
+        	System.out.println(String.format("Codigo: %s, Nombre: ,%s Apellido: %s", e.getC(),e.getNombre(), e.getApellidoPaterno()));
+        	
+        }
         
+        
+        
+        tx.commit();
+     
         
     }
+    
+    
+    private static void mostrarRegistro() {
+    	Transaction tx = null;
+    	Session sesion = HibernateUtil.getSessionFactory().openSession();
+    	
+    	
+    }
+    
+    
+    
 }

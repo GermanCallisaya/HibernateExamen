@@ -1,12 +1,14 @@
 package com.hibernate.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table (name="materia",schema="public")
 public class Materia {
-	private int 		id_materia;
+	@Id
+	private int 	id_materia;
 	private String	descripcion;
 	
 	public Materia() {}
